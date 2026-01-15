@@ -1,0 +1,13 @@
+{
+  "frontend/src/App.tsx": "Main application component with page navigation state management and theme provider setup for the Study Tracker app.",
+  "frontend/src/hooks/useQueries.ts": "React Query hooks for all backend operations including subjects, goals, and study sessions with proper state invalidation and toast notifications.",
+  "frontend/src/components/Header.tsx": "Application header with navigation menu, theme toggle, and responsive mobile menu for the Study Tracker.",
+  "frontend/src/components/Footer.tsx": "Simple footer component with branding and attribution link to caffeine.ai.",
+  "frontend/src/pages/Dashboard.tsx": "Dashboard page displaying today's stats, weekly progress, goal tracking, and recent study sessions with visual cards.",
+  "frontend/src/pages/Subjects.tsx": "Subject management page with add, edit, and delete functionality including color picker for visual distinction.",
+  "frontend/src/pages/Timer.tsx": "Study timer page with start/pause/stop controls, subject selection, and automatic session recording to backend.",
+  "frontend/src/pages/Analytics.tsx": "Analytics page with daily and subject-wise charts using Recharts, showing weekly statistics and performance trends.",
+  "frontend/src/pages/Goals.tsx": "Goals management page allowing users to set time-based or task-based daily study goals with helpful tips.",
+  "frontend/src/index.css": "Global styles with OKLCH color system customized for a professional study app theme with purple/indigo primary colors.",
+  "frontend/tailwind.config.js": "Tailwind configuration with extended color palette and design tokens matching the study tracker theme."
+}
