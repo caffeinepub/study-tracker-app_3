@@ -101,36 +101,35 @@ export default function Subjects() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-3xl font-bold">مضامین</h2>
-          <p className="text-muted-foreground mt-1">اپنے مطالعہ کے مضامین کا انتظام کریں</p>
+          <h2 className="text-3xl font-bold">Subjects</h2>
+          <p className="text-muted-foreground mt-1">Manage your study subjects</p>
         </div>
         <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
           <DialogTrigger asChild>
             <Button className="gap-2">
               <Plus className="h-4 w-4" />
-              نیا مضمون
+              New Subject
             </Button>
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>نیا مضمون شامل کریں</DialogTitle>
+              <DialogTitle>Add New Subject</DialogTitle>
               <DialogDescription>
-                اپنے مطالعہ کے لیے نیا مضمون شامل کریں
+                Add a new subject to track your studies
               </DialogDescription>
             </DialogHeader>
             <div className="space-y-4 py-4">
               <div className="space-y-2">
-                <Label htmlFor="subject-name">مضمون کا نام</Label>
+                <Label htmlFor="subject-name">Subject Name</Label>
                 <Input
                   id="subject-name"
-                  placeholder="مثال: ریاضی، سائنس، تاریخ"
+                  placeholder="e.g., Mathematics, Science, History"
                   value={newSubjectName}
                   onChange={(e) => setNewSubjectName(e.target.value)}
-                  dir="rtl"
                 />
               </div>
               <div className="space-y-2">
-                <Label>رنگ منتخب کریں</Label>
+                <Label>Choose Color</Label>
                 <div className="grid grid-cols-9 gap-2">
                   {PRESET_COLORS.map((color) => (
                     <button
@@ -151,7 +150,7 @@ export default function Subjects() {
                 onClick={handleAddSubject}
                 disabled={!newSubjectName.trim() || addSubject.isPending}
               >
-                {addSubject.isPending ? 'محفوظ ہو رہا ہے...' : 'شامل کریں'}
+                {addSubject.isPending ? 'Adding...' : 'Add Subject'}
               </Button>
             </DialogFooter>
           </DialogContent>
@@ -162,13 +161,13 @@ export default function Subjects() {
         <Card>
           <CardContent className="flex flex-col items-center justify-center py-16">
             <BookOpen className="h-16 w-16 text-muted-foreground mb-4" />
-            <h3 className="text-xl font-semibold mb-2">کوئی مضمون نہیں</h3>
+            <h3 className="text-xl font-semibold mb-2">No Subjects Yet</h3>
             <p className="text-muted-foreground text-center mb-4">
-              شروع کرنے کے لیے اپنا پہلا مضمون شامل کریں
+              Add your first subject to get started
             </p>
             <Button onClick={() => setIsAddDialogOpen(true)} className="gap-2">
               <Plus className="h-4 w-4" />
-              پہلا مضمون شامل کریں
+              Add First Subject
             </Button>
           </CardContent>
         </Card>
@@ -205,31 +204,30 @@ export default function Subjects() {
                         onClick={() => openEditDialog(subject)}
                       >
                         <Edit2 className="h-4 w-4" />
-                        ترمیم
+                        Edit
                       </Button>
                     </DialogTrigger>
                     <DialogContent>
                       <DialogHeader>
-                        <DialogTitle>مضمون میں ترمیم کریں</DialogTitle>
+                        <DialogTitle>Edit Subject</DialogTitle>
                         <DialogDescription>
-                          مضمون کی تفصیلات اپ ڈیٹ کریں
+                          Update subject details
                         </DialogDescription>
                       </DialogHeader>
                       {editingSubject && (
                         <div className="space-y-4 py-4">
                           <div className="space-y-2">
-                            <Label htmlFor="edit-subject-name">مضمون کا نام</Label>
+                            <Label htmlFor="edit-subject-name">Subject Name</Label>
                             <Input
                               id="edit-subject-name"
                               value={editingSubject.name}
                               onChange={(e) =>
                                 setEditingSubject({ ...editingSubject, name: e.target.value })
                               }
-                              dir="rtl"
                             />
                           </div>
                           <div className="space-y-2">
-                            <Label>رنگ منتخب کریں</Label>
+                            <Label>Choose Color</Label>
                             <div className="grid grid-cols-9 gap-2">
                               {PRESET_COLORS.map((color) => (
                                 <button
@@ -255,7 +253,7 @@ export default function Subjects() {
                           onClick={handleEditSubject}
                           disabled={!editingSubject?.name.trim() || editSubject.isPending}
                         >
-                          {editSubject.isPending ? 'محفوظ ہو رہا ہے...' : 'محفوظ کریں'}
+                          {editSubject.isPending ? 'Saving...' : 'Save Changes'}
                         </Button>
                       </DialogFooter>
                     </DialogContent>
@@ -265,23 +263,23 @@ export default function Subjects() {
                     <AlertDialogTrigger asChild>
                       <Button variant="outline" size="sm" className="gap-2">
                         <Trash2 className="h-4 w-4" />
-                        حذف
+                        Delete
                       </Button>
                     </AlertDialogTrigger>
                     <AlertDialogContent>
                       <AlertDialogHeader>
-                        <AlertDialogTitle>کیا آپ واقعی حذف کرنا چاہتے ہیں؟</AlertDialogTitle>
+                        <AlertDialogTitle>Are you sure you want to delete?</AlertDialogTitle>
                         <AlertDialogDescription>
-                          یہ عمل واپس نہیں کیا جا سکتا۔ یہ مضمون اور اس سے متعلق تمام سیشن مستقل طور پر حذف ہو جائیں گے۔
+                          This action cannot be undone. This subject and all related sessions will be permanently deleted.
                         </AlertDialogDescription>
                       </AlertDialogHeader>
                       <AlertDialogFooter>
-                        <AlertDialogCancel>منسوخ کریں</AlertDialogCancel>
+                        <AlertDialogCancel>Cancel</AlertDialogCancel>
                         <AlertDialogAction
                           onClick={() => handleRemoveSubject(subject.id)}
                           className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
                         >
-                          حذف کریں
+                          Delete
                         </AlertDialogAction>
                       </AlertDialogFooter>
                     </AlertDialogContent>

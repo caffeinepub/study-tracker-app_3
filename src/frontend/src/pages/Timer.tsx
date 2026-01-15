@@ -110,33 +110,33 @@ export default function Timer() {
   return (
     <div className="max-w-2xl mx-auto space-y-6">
       <div>
-        <h2 className="text-3xl font-bold">مطالعہ ٹائمر</h2>
-        <p className="text-muted-foreground mt-1">اپنے مطالعہ کے وقت کو ٹریک کریں</p>
+        <h2 className="text-3xl font-bold">Study Timer</h2>
+        <p className="text-muted-foreground mt-1">Track your study time</p>
       </div>
 
       <Card className="overflow-hidden">
         <CardHeader className="bg-gradient-to-r from-primary/10 to-primary/5">
           <CardTitle className="flex items-center gap-2">
             <Clock className="h-5 w-5" />
-            ٹائمر
+            Timer
           </CardTitle>
         </CardHeader>
         <CardContent className="pt-6 space-y-6">
           {/* Subject Selection */}
           <div className="space-y-2">
-            <Label htmlFor="subject-select">مضمون منتخب کریں</Label>
+            <Label htmlFor="subject-select">Select Subject</Label>
             <Select
               value={selectedSubject}
               onValueChange={setSelectedSubject}
               disabled={isRunning}
             >
-              <SelectTrigger id="subject-select" dir="rtl">
-                <SelectValue placeholder="مضمون منتخب کریں" />
+              <SelectTrigger id="subject-select">
+                <SelectValue placeholder="Choose a subject" />
               </SelectTrigger>
               <SelectContent>
                 {subjects.length === 0 ? (
                   <div className="p-4 text-center text-sm text-muted-foreground">
-                    کوئی مضمون دستیاب نہیں
+                    No subjects available
                   </div>
                 ) : (
                   subjects.map((subject) => (
@@ -176,7 +176,7 @@ export default function Timer() {
                   className="gap-2 px-8"
                 >
                   <Play className="h-5 w-5" />
-                  شروع کریں
+                  Start
                 </Button>
               ) : (
                 <>
@@ -189,12 +189,12 @@ export default function Timer() {
                     {isPaused ? (
                       <>
                         <Play className="h-5 w-5" />
-                        جاری رکھیں
+                        Resume
                       </>
                     ) : (
                       <>
                         <Pause className="h-5 w-5" />
-                        روکیں
+                        Pause
                       </>
                     )}
                   </Button>
@@ -206,7 +206,7 @@ export default function Timer() {
                     className="gap-2 px-8"
                   >
                     <Square className="h-5 w-5" />
-                    {recordSession.isPending ? 'محفوظ ہو رہا ہے...' : 'ختم کریں'}
+                    {recordSession.isPending ? 'Saving...' : 'Stop'}
                   </Button>
                 </>
               )}
@@ -217,7 +217,7 @@ export default function Timer() {
           {isRunning && (
             <div className="text-center">
               <p className="text-sm text-muted-foreground">
-                {isPaused ? 'ٹائمر رکا ہوا ہے' : 'ٹائمر چل رہا ہے...'}
+                {isPaused ? 'Timer paused' : 'Timer running...'}
               </p>
             </div>
           )}
@@ -227,14 +227,14 @@ export default function Timer() {
       {/* Instructions */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-lg">ہدایات</CardTitle>
+          <CardTitle className="text-lg">Instructions</CardTitle>
         </CardHeader>
         <CardContent className="space-y-2 text-sm text-muted-foreground">
-          <p>• پہلے مضمون منتخب کریں</p>
-          <p>• "شروع کریں" بٹن دبائیں</p>
-          <p>• ضرورت پڑنے پر ٹائمر کو روک سکتے ہیں</p>
-          <p>• "ختم کریں" دبانے پر سیشن خودکار طور پر محفوظ ہو جائے گا</p>
-          <p>• کم از کم 1 منٹ کا سیشن ریکارڈ ہوگا</p>
+          <p>• First, select a subject</p>
+          <p>• Press the "Start" button to begin</p>
+          <p>• You can pause the timer if needed</p>
+          <p>• Press "Stop" to save the session automatically</p>
+          <p>• Sessions of at least 1 minute will be recorded</p>
         </CardContent>
       </Card>
     </div>

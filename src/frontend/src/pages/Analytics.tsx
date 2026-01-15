@@ -29,7 +29,7 @@ export default function Analytics() {
       const totalMinutes = daySessions.reduce((sum, s) => sum + Number(s.duration), 0);
 
       return {
-        date: date.toLocaleDateString('ur-PK', { weekday: 'short' }),
+        date: date.toLocaleDateString('en-US', { weekday: 'short' }),
         hours: Number((totalMinutes / 60).toFixed(1)),
         sessions: daySessions.length,
       };
@@ -88,42 +88,42 @@ export default function Analytics() {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-3xl font-bold">تجزیات</h2>
-        <p className="text-muted-foreground mt-1">اپنی مطالعہ کی کارکردگی کا تجزیہ کریں</p>
+        <h2 className="text-3xl font-bold">Analytics</h2>
+        <p className="text-muted-foreground mt-1">Analyze your study performance</p>
       </div>
 
       {/* Weekly Stats */}
       <div className="grid gap-4 md:grid-cols-3">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">ہفتہ وار کل</CardTitle>
+            <CardTitle className="text-sm font-medium">Weekly Total</CardTitle>
             <Clock className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{weeklyStats.totalHours} گھنٹے</div>
-            <p className="text-xs text-muted-foreground mt-1">اس ہفتے</p>
+            <div className="text-2xl font-bold">{weeklyStats.totalHours} hours</div>
+            <p className="text-xs text-muted-foreground mt-1">This week</p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">کل سیشن</CardTitle>
+            <CardTitle className="text-sm font-medium">Total Sessions</CardTitle>
             <BookOpen className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{weeklyStats.totalSessions}</div>
-            <p className="text-xs text-muted-foreground mt-1">اس ہفتے</p>
+            <p className="text-xs text-muted-foreground mt-1">This week</p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">روزانہ اوسط</CardTitle>
+            <CardTitle className="text-sm font-medium">Daily Average</CardTitle>
             <TrendingUp className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{weeklyStats.avgHoursPerDay} گھنٹے</div>
-            <p className="text-xs text-muted-foreground mt-1">فی دن</p>
+            <div className="text-2xl font-bold">{weeklyStats.avgHoursPerDay} hours</div>
+            <p className="text-xs text-muted-foreground mt-1">Per day</p>
           </CardContent>
         </Card>
       </div>
@@ -131,20 +131,20 @@ export default function Analytics() {
       {/* Charts */}
       <Tabs defaultValue="daily" className="space-y-4">
         <TabsList className="grid w-full max-w-md grid-cols-2">
-          <TabsTrigger value="daily">روزانہ</TabsTrigger>
-          <TabsTrigger value="subjects">مضامین</TabsTrigger>
+          <TabsTrigger value="daily">Daily</TabsTrigger>
+          <TabsTrigger value="subjects">Subjects</TabsTrigger>
         </TabsList>
 
         <TabsContent value="daily" className="space-y-4">
           <Card>
             <CardHeader>
-              <CardTitle>آخری 7 دنوں کی کارکردگی</CardTitle>
+              <CardTitle>Last 7 Days Performance</CardTitle>
             </CardHeader>
             <CardContent>
               {dailyData.every((d) => d.hours === 0) ? (
                 <div className="flex flex-col items-center justify-center py-16 text-muted-foreground">
                   <TrendingUp className="h-16 w-16 mb-4 opacity-50" />
-                  <p>ابھی تک کوئی ڈیٹا دستیاب نہیں</p>
+                  <p>No data available yet</p>
                 </div>
               ) : (
                 <ResponsiveContainer width="100%" height={350}>
@@ -158,7 +158,7 @@ export default function Analytics() {
                     <YAxis
                       className="text-xs"
                       tick={{ fill: 'hsl(var(--muted-foreground))' }}
-                      label={{ value: 'گھنٹے', angle: -90, position: 'insideLeft' }}
+                      label={{ value: 'Hours', angle: -90, position: 'insideLeft' }}
                     />
                     <Tooltip
                       contentStyle={{
@@ -179,13 +179,13 @@ export default function Analytics() {
         <TabsContent value="subjects" className="space-y-4">
           <Card>
             <CardHeader>
-              <CardTitle>مضامین کے لحاظ سے تقسیم</CardTitle>
+              <CardTitle>Distribution by Subject</CardTitle>
             </CardHeader>
             <CardContent>
               {subjectData.length === 0 ? (
                 <div className="flex flex-col items-center justify-center py-16 text-muted-foreground">
                   <BookOpen className="h-16 w-16 mb-4 opacity-50" />
-                  <p>ابھی تک کوئی ڈیٹا دستیاب نہیں</p>
+                  <p>No data available yet</p>
                 </div>
               ) : (
                 <div className="grid md:grid-cols-2 gap-8">
@@ -229,9 +229,9 @@ export default function Analytics() {
                           <span className="font-medium">{subject.name}</span>
                         </div>
                         <div className="text-right">
-                          <p className="font-bold">{subject.hours} گھنٹے</p>
+                          <p className="font-bold">{subject.hours} hours</p>
                           <p className="text-xs text-muted-foreground">
-                            {subject.sessions} سیشن
+                            {subject.sessions} sessions
                           </p>
                         </div>
                       </div>

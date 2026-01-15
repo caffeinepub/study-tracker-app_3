@@ -19,11 +19,11 @@ export default function Header({ currentPage, onNavigate }: HeaderProps) {
   const { setTheme } = useTheme();
 
   const navItems: { id: Page; label: string }[] = [
-    { id: 'dashboard', label: 'ڈیش بورڈ' },
-    { id: 'timer', label: 'ٹائمر' },
-    { id: 'subjects', label: 'مضامین' },
-    { id: 'analytics', label: 'تجزیات' },
-    { id: 'goals', label: 'اہداف' },
+    { id: 'dashboard', label: 'Dashboard' },
+    { id: 'timer', label: 'Timer' },
+    { id: 'subjects', label: 'Subjects' },
+    { id: 'analytics', label: 'Analytics' },
+    { id: 'goals', label: 'Goals' },
   ];
 
   return (
@@ -31,7 +31,7 @@ export default function Header({ currentPage, onNavigate }: HeaderProps) {
       <div className="container flex h-16 items-center justify-between">
         <div className="flex items-center gap-2">
           <BookOpen className="h-6 w-6 text-primary" />
-          <h1 className="text-xl font-bold text-primary">مطالعہ ٹریکر</h1>
+          <h1 className="text-xl font-bold text-primary">Study Tracker</h1>
         </div>
 
         <nav className="hidden md:flex items-center gap-1">
@@ -58,13 +58,13 @@ export default function Header({ currentPage, onNavigate }: HeaderProps) {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuItem onClick={() => setTheme('light')}>
-                روشن
+                Light
               </DropdownMenuItem>
               <DropdownMenuItem onClick={() => setTheme('dark')}>
-                تاریک
+                Dark
               </DropdownMenuItem>
               <DropdownMenuItem onClick={() => setTheme('system')}>
-                سسٹم
+                System
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

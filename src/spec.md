@@ -1,7 +1,7 @@
-# Study Tracker App Specification
+# Study Tracker App
 
 ## Overview
-A professional study tracking application that helps students monitor their study progress, set goals, and analyze their performance. The application interface and content will be in Urdu language.
+A professional study tracking application that helps students monitor their study progress, set goals, and analyze their performance. The application interface and content will be in English language.
 
 ## Core Features
 
@@ -54,5 +54,5 @@ The backend must store:
 - Clean, professional design suitable for students
 - Intuitive navigation between different sections
 - Responsive layout for various screen sizes
-- All text and interface elements in Urdu language
+- All text and interface elements in English language
 - Color-coded visual elements for better organization

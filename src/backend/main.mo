@@ -60,7 +60,7 @@ actor {
   };
 
   public shared ({ caller }) func addSubject(id : Text, name : Text, color : Text) : async () {
-    if (subjects.containsKey(id)) { Runtime.trap("مضمون پہلے سے موجود ہے") };
+    if (subjects.containsKey(id)) { Runtime.trap("Subject already exists") };
     let subject : Subject = {
       id;
       name;
@@ -72,7 +72,7 @@ actor {
 
   public shared ({ caller }) func editSubject(id : Text, name : Text, color : Text) : async () {
     switch (subjects.get(id)) {
-      case (null) { Runtime.trap("مضمون نہیں ملا") };
+      case (null) { Runtime.trap("Subject not found") };
       case (?existing) {
         let updated : Subject = {
           id;
@@ -86,7 +86,7 @@ actor {
   };
 
   public shared ({ caller }) func removeSubject(id : Text) : async () {
-    if (not subjects.containsKey(id)) { Runtime.trap("مضمون نہیں ملا") };
+    if (not subjects.containsKey(id)) { Runtime.trap("Subject not found") };
     subjects.remove(id);
   };
 

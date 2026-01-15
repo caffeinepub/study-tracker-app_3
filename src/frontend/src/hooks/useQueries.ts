@@ -28,10 +28,10 @@ export function useAddSubject() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['subjects'] });
-      toast.success('مضمون کامیابی سے شامل ہوگیا');
+      toast.success('Subject added successfully');
     },
     onError: (error: Error) => {
-      toast.error(error.message || 'مضمون شامل کرنے میں خرابی');
+      toast.error(error.message || 'Failed to add subject');
     },
   });
 }
@@ -47,10 +47,10 @@ export function useEditSubject() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['subjects'] });
-      toast.success('مضمون کامیابی سے اپ ڈیٹ ہوگیا');
+      toast.success('Subject updated successfully');
     },
     onError: (error: Error) => {
-      toast.error(error.message || 'مضمون اپ ڈیٹ کرنے میں خرابی');
+      toast.error(error.message || 'Failed to update subject');
     },
   });
 }
@@ -67,10 +67,10 @@ export function useRemoveSubject() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['subjects'] });
       queryClient.invalidateQueries({ queryKey: ['sessions'] });
-      toast.success('مضمون کامیابی سے حذف ہوگیا');
+      toast.success('Subject deleted successfully');
     },
     onError: (error: Error) => {
-      toast.error(error.message || 'مضمون حذف کرنے میں خرابی');
+      toast.error(error.message || 'Failed to delete subject');
     },
   });
 }
@@ -100,10 +100,10 @@ export function useSetDailyGoal() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['dailyGoal'] });
-      toast.success('روزانہ کا ہدف محفوظ ہوگیا');
+      toast.success('Daily goal saved successfully');
     },
     onError: () => {
-      toast.error('ہدف محفوظ کرنے میں خرابی');
+      toast.error('Failed to save goal');
     },
   });
 }
@@ -133,10 +133,10 @@ export function useRecordSession() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['sessions'] });
-      toast.success('سیشن کامیابی سے محفوظ ہوگیا');
+      toast.success('Session saved successfully');
     },
     onError: () => {
-      toast.error('سیشن محفوظ کرنے میں خرابی');
+      toast.error('Failed to save session');
     },
   });
 }

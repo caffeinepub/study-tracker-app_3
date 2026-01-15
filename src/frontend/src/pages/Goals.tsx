@@ -52,47 +52,47 @@ export default function Goals() {
   return (
     <div className="max-w-2xl mx-auto space-y-6">
       <div>
-        <h2 className="text-3xl font-bold">روزانہ کے اہداف</h2>
-        <p className="text-muted-foreground mt-1">اپنے مطالعہ کے روزانہ اہداف مقرر کریں</p>
+        <h2 className="text-3xl font-bold">Daily Goals</h2>
+        <p className="text-muted-foreground mt-1">Set your daily study goals</p>
       </div>
 
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Target className="h-5 w-5" />
-            ہدف کی ترتیبات
+            Goal Settings
           </CardTitle>
           <CardDescription>
-            اپنی ترجیح کے مطابق وقت یا کاموں کی بنیاد پر ہدف مقرر کریں
+            Set goals based on time or tasks according to your preference
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           <RadioGroup value={goalType} onValueChange={(v) => setGoalType(v as 'time' | 'task')}>
             <div className="space-y-3">
-              <div className="flex items-center space-x-2 space-x-reverse p-4 rounded-lg border hover:bg-accent/50 transition-colors cursor-pointer">
+              <div className="flex items-center space-x-2 p-4 rounded-lg border hover:bg-accent/50 transition-colors cursor-pointer">
                 <RadioGroupItem value="time" id="time" />
                 <Label htmlFor="time" className="flex-1 cursor-pointer">
                   <div className="flex items-center gap-3">
                     <Clock className="h-5 w-5 text-primary" />
                     <div>
-                      <p className="font-medium">وقت کی بنیاد پر</p>
+                      <p className="font-medium">Time-Based</p>
                       <p className="text-sm text-muted-foreground">
-                        روزانہ مطالعہ کے گھنٹے مقرر کریں
+                        Set daily study hours
                       </p>
                     </div>
                   </div>
                 </Label>
               </div>
 
-              <div className="flex items-center space-x-2 space-x-reverse p-4 rounded-lg border hover:bg-accent/50 transition-colors cursor-pointer">
+              <div className="flex items-center space-x-2 p-4 rounded-lg border hover:bg-accent/50 transition-colors cursor-pointer">
                 <RadioGroupItem value="task" id="task" />
                 <Label htmlFor="task" className="flex-1 cursor-pointer">
                   <div className="flex items-center gap-3">
                     <CheckCircle2 className="h-5 w-5 text-primary" />
                     <div>
-                      <p className="font-medium">کاموں کی بنیاد پر</p>
+                      <p className="font-medium">Task-Based</p>
                       <p className="text-sm text-muted-foreground">
-                        روزانہ مطالعہ کے سیشن مقرر کریں
+                        Set daily study sessions
                       </p>
                     </div>
                   </div>
@@ -103,7 +103,7 @@ export default function Goals() {
 
           <div className="space-y-2">
             <Label htmlFor="goal-value">
-              {goalType === 'time' ? 'گھنٹے فی دن' : 'سیشن فی دن'}
+              {goalType === 'time' ? 'Hours per day' : 'Sessions per day'}
             </Label>
             <Input
               id="goal-value"
@@ -111,13 +111,12 @@ export default function Goals() {
               min="1"
               value={goalValue}
               onChange={(e) => setGoalValue(e.target.value)}
-              placeholder={goalType === 'time' ? 'مثال: 3' : 'مثال: 5'}
-              dir="rtl"
+              placeholder={goalType === 'time' ? 'e.g., 3' : 'e.g., 5'}
             />
             <p className="text-sm text-muted-foreground">
               {goalType === 'time'
-                ? 'آپ روزانہ کتنے گھنٹے مطالعہ کرنا چاہتے ہیں؟'
-                : 'آپ روزانہ کتنے سیشن مکمل کرنا چاہتے ہیں؟'}
+                ? 'How many hours do you want to study daily?'
+                : 'How many sessions do you want to complete daily?'}
             </p>
           </div>
 
@@ -126,7 +125,7 @@ export default function Goals() {
             disabled={!goalValue || parseInt(goalValue) <= 0 || setGoal.isPending}
             className="w-full"
           >
-            {setGoal.isPending ? 'محفوظ ہو رہا ہے...' : 'ہدف محفوظ کریں'}
+            {setGoal.isPending ? 'Saving...' : 'Save Goal'}
           </Button>
         </CardContent>
       </Card>
@@ -134,7 +133,7 @@ export default function Goals() {
       {currentGoal && (
         <Card className="border-primary/50 bg-primary/5">
           <CardHeader>
-            <CardTitle className="text-lg">موجودہ ہدف</CardTitle>
+            <CardTitle className="text-lg">Current Goal</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="flex items-center gap-3">
@@ -148,10 +147,10 @@ export default function Goals() {
               <div>
                 <p className="text-2xl font-bold">
                   {currentGoal.__kind__ === 'timeBased'
-                    ? `${Number(currentGoal.timeBased)} گھنٹے`
-                    : `${Number(currentGoal.taskBased)} سیشن`}
+                    ? `${Number(currentGoal.timeBased)} hours`
+                    : `${Number(currentGoal.taskBased)} sessions`}
                 </p>
-                <p className="text-sm text-muted-foreground">روزانہ کا ہدف</p>
+                <p className="text-sm text-muted-foreground">Daily goal</p>
               </div>
             </div>
           </CardContent>
@@ -161,13 +160,13 @@ export default function Goals() {
       {/* Tips */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-lg">تجاویز</CardTitle>
+          <CardTitle className="text-lg">Tips</CardTitle>
         </CardHeader>
         <CardContent className="space-y-2 text-sm text-muted-foreground">
-          <p>• حقیقت پسندانہ اہداف مقرر کریں جو آپ مسلسل حاصل کر سکیں</p>
-          <p>• چھوٹے اہداف سے شروع کریں اور آہستہ آہستہ بڑھائیں</p>
-          <p>• اپنی پیشرفت کو باقاعدگی سے چیک کریں</p>
-          <p>• ضرورت کے مطابق اپنے اہداف کو ایڈجسٹ کریں</p>
+          <p>• Set realistic goals that you can consistently achieve</p>
+          <p>• Start with smaller goals and gradually increase</p>
+          <p>• Check your progress regularly</p>
+          <p>• Adjust your goals as needed</p>
         </CardContent>
       </Card>
     </div>

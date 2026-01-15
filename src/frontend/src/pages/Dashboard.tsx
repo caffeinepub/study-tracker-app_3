@@ -63,7 +63,7 @@ export default function Dashboard({ onNavigate }: DashboardProps) {
 
   const getSubjectName = (subjectId: string) => {
     const subject = subjects.find((s) => s.id === subjectId);
-    return subject?.name || 'نامعلوم مضمون';
+    return subject?.name || 'Unknown Subject';
   };
 
   const getSubjectColor = (subjectId: string) => {
@@ -75,14 +75,14 @@ export default function Dashboard({ onNavigate }: DashboardProps) {
     const hours = Math.floor(minutes / 60);
     const mins = minutes % 60;
     if (hours > 0) {
-      return `${hours} گھنٹے ${mins} منٹ`;
+      return `${hours}h ${mins}m`;
     }
-    return `${mins} منٹ`;
+    return `${mins}m`;
   };
 
   const formatTime = (timestamp: bigint) => {
     const date = new Date(Number(timestamp) / 1000000);
-    return date.toLocaleTimeString('ur-PK', { hour: '2-digit', minute: '2-digit' });
+    return date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
   };
 
   if (sessionsLoading || goalLoading || subjectsLoading) {
@@ -103,13 +103,13 @@ export default function Dashboard({ onNavigate }: DashboardProps) {
       {/* Hero Section */}
       <div className="relative overflow-hidden rounded-lg bg-gradient-to-r from-primary/10 via-primary/5 to-background p-8 md:p-12">
         <div className="relative z-10">
-          <h2 className="text-3xl font-bold mb-2">خوش آمدید!</h2>
+          <h2 className="text-3xl font-bold mb-2">Welcome Back!</h2>
           <p className="text-lg text-muted-foreground mb-6">
-            آج کی پیشرفت کا جائزہ لیں اور اپنے اہداف کی طرف بڑھیں
+            Track your progress today and work towards your goals
           </p>
           <Button size="lg" onClick={() => onNavigate('timer')} className="gap-2">
             <Play className="h-5 w-5" />
-            مطالعہ شروع کریں
+            Start Studying
           </Button>
         </div>
       </div>
@@ -118,51 +118,51 @@ export default function Dashboard({ onNavigate }: DashboardProps) {
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card className="hover:shadow-lg transition-shadow">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">آج کا وقت</CardTitle>
+            <CardTitle className="text-sm font-medium">Today's Time</CardTitle>
             <Clock className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
-              {todayStats.totalHours.toFixed(1)} گھنٹے
+              {todayStats.totalHours.toFixed(1)} hours
             </div>
             <p className="text-xs text-muted-foreground mt-1">
-              {todayStats.totalMinutes} منٹ
+              {todayStats.totalMinutes} minutes
             </p>
           </CardContent>
         </Card>
 
         <Card className="hover:shadow-lg transition-shadow">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">آج کے سیشن</CardTitle>
+            <CardTitle className="text-sm font-medium">Today's Sessions</CardTitle>
             <BookOpen className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{todayStats.sessionCount}</div>
-            <p className="text-xs text-muted-foreground mt-1">مکمل سیشن</p>
+            <p className="text-xs text-muted-foreground mt-1">Completed sessions</p>
           </CardContent>
         </Card>
 
         <Card className="hover:shadow-lg transition-shadow">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">ہفتہ وار کل</CardTitle>
+            <CardTitle className="text-sm font-medium">Weekly Total</CardTitle>
             <TrendingUp className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
-              {weeklyStats.totalHours.toFixed(1)} گھنٹے
+              {weeklyStats.totalHours.toFixed(1)} hours
             </div>
-            <p className="text-xs text-muted-foreground mt-1">اس ہفتے</p>
+            <p className="text-xs text-muted-foreground mt-1">This week</p>
           </CardContent>
         </Card>
 
         <Card className="hover:shadow-lg transition-shadow">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">مضامین</CardTitle>
+            <CardTitle className="text-sm font-medium">Subjects</CardTitle>
             <Target className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{subjects.length}</div>
-            <p className="text-xs text-muted-foreground mt-1">فعال مضامین</p>
+            <p className="text-xs text-muted-foreground mt-1">Active subjects</p>
           </CardContent>
         </Card>
       </div>
@@ -173,7 +173,7 @@ export default function Dashboard({ onNavigate }: DashboardProps) {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Target className="h-5 w-5" />
-              آج کا ہدف
+              Today's Goal
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -181,8 +181,8 @@ export default function Dashboard({ onNavigate }: DashboardProps) {
               <div className="flex justify-between text-sm">
                 <span>
                   {goal.__kind__ === 'timeBased'
-                    ? `${todayStats.totalHours.toFixed(1)} / ${Number(goal.timeBased)} گھنٹے`
-                    : `${todayStats.sessionCount} / ${Number(goal.taskBased)} سیشن`}
+                    ? `${todayStats.totalHours.toFixed(1)} / ${Number(goal.timeBased)} hours`
+                    : `${todayStats.sessionCount} / ${Number(goal.taskBased)} sessions`}
                 </span>
                 <span className="font-medium">{goalProgress.toFixed(0)}%</span>
               </div>
@@ -190,11 +190,11 @@ export default function Dashboard({ onNavigate }: DashboardProps) {
             </div>
             {goalProgress >= 100 ? (
               <p className="text-sm text-green-600 dark:text-green-400 font-medium">
-                مبارک ہو! آپ نے آج کا ہدف مکمل کر لیا ہے 🎉
+                Congratulations! You've achieved today's goal 🎉
               </p>
             ) : (
               <p className="text-sm text-muted-foreground">
-                آپ اپنے ہدف کے قریب ہیں، جاری رکھیں!
+                You're getting closer to your goal, keep going!
               </p>
             )}
           </CardContent>
@@ -204,19 +204,19 @@ export default function Dashboard({ onNavigate }: DashboardProps) {
       {/* Recent Sessions */}
       <Card>
         <CardHeader>
-          <CardTitle>حالیہ سیشن</CardTitle>
+          <CardTitle>Recent Sessions</CardTitle>
         </CardHeader>
         <CardContent>
           {recentSessions.length === 0 ? (
             <div className="text-center py-8 text-muted-foreground">
               <BookOpen className="h-12 w-12 mx-auto mb-3 opacity-50" />
-              <p>ابھی تک کوئی سیشن ریکارڈ نہیں ہوا</p>
+              <p>No sessions recorded yet</p>
               <Button
                 variant="link"
                 onClick={() => onNavigate('timer')}
                 className="mt-2"
               >
-                پہلا سیشن شروع کریں
+                Start your first session
               </Button>
             </div>
           ) : (
